@@ -12,4 +12,11 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  // Force-enable the Cloudflare Workers build output outside the Lovable sandbox
+  // (e.g. Cloudflare Pages CI), which otherwise skips this step.
+  nitro: {
+    preset: "cloudflare-module",
+    output: { dir: "dist", serverDir: "dist/server", publicDir: "dist/client" },
+    cloudflare: { nodeCompat: true, deployConfig: true },
+  },
 });
