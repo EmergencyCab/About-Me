@@ -4,13 +4,13 @@ import { Download, Menu, X } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
-  { label: "Home", to: "/", hash: "" },
   { label: "About", to: "/", hash: "about" },
   { label: "Research", to: "/", hash: "research" },
   { label: "Projects", to: "/", hash: "projects" },
+  { label: "Leadership", to: "/", hash: "leadership" },
+  { label: "Awards", to: "/", hash: "awards" },
   { label: "Writing", to: "/", hash: "writing" },
-  { label: "Dispatches", to: "/", hash: "dispatches" },
-  { label: "Now", to: "/now", hash: "" },
+  { label: "Quests", to: "/", hash: "sidequest" },
   { label: "Contact", to: "/", hash: "contact" },
 ] as const;
 
@@ -24,12 +24,26 @@ export function Navbar() {
     const onScroll = () => {
       setScrolled(window.scrollY > 30);
       const sections = links.filter((l) => l.hash).map((l) => l.hash);
+      const mid = window.innerHeight / 2;
       let current = "";
       for (const id of sections) {
         const el = document.getElementById(id);
         if (el) {
           const r = el.getBoundingClientRect();
-          if (r.top <= 120 && r.bottom >= 120) current = id;
+          if (r.top <= mid && r.bottom >= mid) current = id;
+        }
+      }
+      // fallback: at bottom of page, activate last visible section
+      if (!current) {
+        const atBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 80;
+        if (atBottom) {
+          for (const id of [...sections].reverse()) {
+            const el = document.getElementById(id);
+            if (el && el.getBoundingClientRect().top < window.innerHeight) {
+              current = id;
+              break;
+            }
+          }
         }
       }
       setActive(current);
@@ -40,9 +54,7 @@ export function Navbar() {
   }, []);
 
   const isActive = (l: (typeof links)[number]) => {
-    if (l.to === "/now") return path === "/now";
     if (path !== "/") return false;
-    if (l.hash === "") return active === "" && !scrolled;
     return active === l.hash;
   };
 
@@ -87,7 +99,7 @@ export function Navbar() {
 
         <div className="mx-1 h-5 w-px bg-border" />
         <a
-          href="/resume.pdf"
+          href="/Resume.pdf"
           download
           className="inline-flex items-center gap-1.5 rounded-full bg-teal px-3.5 py-1.5 text-sm font-medium text-teal-foreground hover:opacity-90 transition"
         >

@@ -12,7 +12,6 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Navbar } from "@/components/Navbar";
-import { LoadingScreen } from "@/components/LoadingScreen";
 
 function NotFoundComponent() {
   return (
@@ -124,7 +123,6 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <LoadingScreen />
       <Navbar />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
