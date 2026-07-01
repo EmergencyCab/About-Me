@@ -4,15 +4,15 @@ import { Minus, Plus } from "lucide-react";
 const posts = [
   {
     title: "To a Beautiful Courtesan",
-    desc: "A translation and close reading of Laxmi Prasad Devkota's 1940s Nepali poem — on finding the divine in a marginalized woman, and what that indicts about hypocrisy, commodification, and who we call sacred.",
-    tag: "Translation",
+    desc: "A translation and close reading of Laxmi Prasad Devkota's 1940s Nepali poem. Finding the divine in a marginalized woman, and what that indicts about hypocrisy, commodification, and who we call sacred.",
+    tag: "Translation & Analysis",
     url: "https://emergencycab.github.io/To-a-Beautiful-Courtesan/",
     cover: "/photos/devkota.png",
   },
   {
     title: "The Interview",
-    desc: "An honest reckoning with why I conduct exhaustive interviews of people before letting them in — and what it costs to watch your own life from the press box.",
-    tag: "Essay",
+    desc: "Why I conduct interviews of people?",
+    tag: "Refelction",
     url: "https://emergencycab.github.io/the-interview/",
     cover: "/photos/interview.webp",
   },
