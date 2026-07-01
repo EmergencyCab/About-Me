@@ -12,7 +12,7 @@ const posts = [
   {
     title: "The Interview",
     desc: "Why I conduct interviews of people?",
-    tag: "Refelction",
+    tag: "Reflection",
     url: "https://emergencycab.github.io/the-interview/",
     cover: "/photos/interview.webp",
   },
