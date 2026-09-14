@@ -10,6 +10,13 @@ const posts = [
     cover: "/photos/devkota.png",
   },
   {
+    title: "Udi Aayo Rani Chari",
+    desc: "A close reading of Haridevi Koirala's Teej song — tracing how a bride arrives with a house full of dowry gifts yet is still called empty-handed, and what that reveals about patriarchy across three generations of my own family in Nepal.",
+    tag: "Translation & Analysis",
+    url: "https://emergencycab.github.io/Udi-Aayo-Rani-Chari/",
+    cover: "/photos/Teej-Cover.jpg",
+  },
+  {
     title: "The Interview",
     desc: "Why I conduct interviews of people?",
     tag: "Reflection",
@@ -58,15 +65,25 @@ export function Writings() {
         </h2>
 
         <blockquote className="mb-14 max-w-3xl mx-auto text-center">
-          <div className="text-7xl sm:text-8xl font-serif leading-none mb-3 select-none text-teal/20">"</div>
+          <div className="text-7xl sm:text-8xl font-serif leading-none mb-3 select-none text-teal/20">
+            "
+          </div>
           <p className="font-display text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight leading-[1.2]">
-            <span className="text-teal">Musubi</span> is the old way of calling the local guardian god. This word has profound meaning. Typing thread is <span className="text-teal">Musubi</span>. Connecting people is <span className="text-teal">Musubi</span>. The flow of time is <span className="text-teal">Musubi</span>.{" "}
+            <span className="text-teal">Musubi</span> is the old way of calling the local guardian
+            god. This word has profound meaning. Typing thread is{" "}
+            <span className="text-teal">Musubi</span>. Connecting people is{" "}
+            <span className="text-teal">Musubi</span>. The flow of time is{" "}
+            <span className="text-teal">Musubi</span>.{" "}
             <span className="text-foreground/50">
-              These are all the god's power. So the braided cords that we make are the god's art and represent the flow of time itself. They converge and take shape. They twist, tangle, sometimes unravel, break, and then connect again. <span className="text-teal">Musubi</span> — knotting. That's time.
+              These are all the god's power. So the braided cords that we make are the god's art and
+              represent the flow of time itself. They converge and take shape. They twist, tangle,
+              sometimes unravel, break, and then connect again.{" "}
+              <span className="text-teal">Musubi</span> — knotting. That's time.
             </span>
           </p>
           <footer className="mt-6 text-sm text-muted-foreground">
-            — <span className="text-foreground/80 font-semibold text-base">Makoto Shinkai</span>, <span className="italic">Your Name</span>
+            — <span className="text-foreground/80 font-semibold text-base">Makoto Shinkai</span>,{" "}
+            <span className="italic">Your Name</span>
           </footer>
         </blockquote>
 
@@ -79,11 +96,17 @@ export function Writings() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="card-hover rounded-2xl border border-border overflow-hidden relative min-h-70 flex flex-col justify-end"
-                style={{ backgroundImage: `url(${p.cover})`, backgroundSize: "cover", backgroundPosition: "center" }}
+                style={{
+                  backgroundImage: `url(${p.cover})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
               >
                 <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent" />
                 <div className="relative z-10 p-6 sm:p-7">
-                  <div className="inline-block text-[10px] tracking-[0.25em] text-teal bg-black/50 border border-teal/30 rounded-full px-3 py-1 mb-3">{p.tag.toUpperCase()}</div>
+                  <div className="inline-block text-[10px] tracking-[0.25em] text-teal bg-black/50 border border-teal/30 rounded-full px-3 py-1 mb-3">
+                    {p.tag.toUpperCase()}
+                  </div>
                   <h3 className="text-xl font-semibold mb-2 text-white">{p.title}</h3>
                   <p className="text-sm text-white/70">{p.desc}</p>
                 </div>
@@ -96,20 +119,27 @@ export function Writings() {
                 rel="noopener noreferrer"
                 className="card-hover rounded-2xl border border-border bg-card p-6 sm:p-7 block"
               >
-                <div className="text-[10px] tracking-[0.25em] text-teal mb-3">{p.tag.toUpperCase()}</div>
+                <div className="text-[10px] tracking-[0.25em] text-teal mb-3">
+                  {p.tag.toUpperCase()}
+                </div>
                 <h3 className="text-xl font-semibold mb-2">{p.title}</h3>
                 <p className="text-sm text-foreground/70">{p.desc}</p>
               </a>
             ) : (
-              <article key={p.title} className="rounded-2xl border border-border bg-card p-6 sm:p-7 opacity-50">
-                <div className="text-[10px] tracking-[0.25em] text-teal mb-3">{p.tag.toUpperCase()}</div>
+              <article
+                key={p.title}
+                className="rounded-2xl border border-border bg-card p-6 sm:p-7 opacity-50"
+              >
+                <div className="text-[10px] tracking-[0.25em] text-teal mb-3">
+                  {p.tag.toUpperCase()}
+                </div>
                 <h3 className="text-xl font-semibold mb-2">{p.title}</h3>
                 <p className="text-sm text-foreground/70 mb-5">{p.desc}</p>
                 <span className="inline-flex items-center gap-1.5 text-sm text-foreground/30 cursor-not-allowed">
                   Coming soon
                 </span>
               </article>
-            )
+            ),
           )}
         </div>
 
@@ -119,11 +149,18 @@ export function Writings() {
               onClick={() => setExpanded(!expanded)}
               className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-5 py-2.5 text-sm font-medium text-foreground/80 hover:border-teal/50 hover:text-teal transition"
             >
-              {expanded ? <><Minus size={14} /> Show Less</> : <><Plus size={14} /> See More Writing</>}
+              {expanded ? (
+                <>
+                  <Minus size={14} /> Show Less
+                </>
+              ) : (
+                <>
+                  <Plus size={14} /> See More Writing
+                </>
+              )}
             </button>
           </div>
         )}
-
       </div>
     </section>
   );
