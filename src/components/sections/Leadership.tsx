@@ -656,6 +656,11 @@ const txst: Entry[] = [
       { src: "/photos/leadership/nsa-advisor-vigil.jpg", caption: "Standing with hundreds of students at the Gen Z Candlelight Vigil" },
       { src: "/photos/leadership/nsa-advisor-cultural.jpg", caption: "Celebrating with NSA members and Miss Supreme Austin at a cultural night" },
       { src: "/photos/leadership/nsa-advisor-temple.jpg", caption: "The home altar set up for our Tihar celebration, the festival of lights" },
+      { src: "/photos/leadership/Fund1.jpg", caption: "Our fundraiser flyer, with before-and-after images of the flooding and a QR code to donate directly to the PM Disaster Relief Fund" },
+      { src: "/photos/leadership/Fund2.jpg", caption: "Tabling for the fundraiser at LBJ Mall" },
+      { src: "/photos/leadership/Fund3.jpg", caption: "NSA members and supporters at the fundraiser table" },
+      { src: "/photos/leadership/Fund4.jpg", caption: "Our \"Nepal Needs Your Help\" poster board, with before-and-after photos of the flooding" },
+      { src: "/photos/leadership/Fund5.jpg", caption: "Our recap of the two-day campaign — $1,350 raised for flood relief" },
     ],
     story: [
       {
@@ -666,6 +671,29 @@ const txst: Entry[] = [
           {
             type: "p",
             text: "With more than 350 members, the Nepalese Student Association is the largest student organization on campus. After serving as both Vice President and President, I was invited back as the organization's first ever undergraduate Student Advisor for the 2026 to 2027 term, with the tenure beginning in fall.",
+          },
+        ],
+      },
+      {
+        eyebrow: "September 2026",
+        title: "Organizing a Fundraiser After the Nepal Flash Floods",
+        image: { src: "/photos/leadership/Fund3.jpg", caption: "NSA members and supporters at the fundraiser table" },
+        blocks: [
+          {
+            type: "p",
+            text: "In August 2026, a glacier collapse triggered catastrophic flash flooding across northern Nepal, killing more than a thousand people, leaving thousands missing, and destroying homes, roads, and bridges across entire communities.",
+          },
+          {
+            type: "p",
+            text: "As Student Advisor, I helped organize the Nepalese Student Association's two-day fundraising campaign at LBJ Mall on September 8 and 9, bringing the Texas State community together in support of flood relief efforts back home.",
+          },
+          {
+            type: "p",
+            text: "Through this fundraiser, we raised $1,350.00 — approximately NPR 205,000 — and donated it in full to Nepal's Prime Minister Disaster Relief Fund (PMDRF).",
+          },
+          {
+            type: "quote",
+            text: "You don't have to be Nepali to care about Nepal.",
           },
         ],
       },
