@@ -1,13 +1,21 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { ArrowLeft, ChevronLeft, ChevronRight, Download, Maximize2, Minus, Plus, Cpu, FileText, Server, Compass, X } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+  ArrowLeft,
+  ChevronLeft,
+  ChevronRight,
+  Download,
+  Maximize2,
+  Minus,
+  Plus,
+  Cpu,
+  FileText,
+  Server,
+  Compass,
+  X,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 type CaptionedPhoto = {
   src: string;
@@ -29,25 +37,61 @@ type Item = {
   gallery?: string[];
   galleryCaptioned?: CaptionedPhoto[];
   link?: string;
+  linkLabel?: string;
 };
 
 const items: Item[] = [
   {
+    title: "IEEE UEMCON Publication",
+    org: "IEEE UEMCON 2026",
+    desc: "Published a peer-reviewed paper with Dr. Damian Valles at IEEE UEMCON — a sustained-run benchmarking study of deep learning training on Texas State's LEAP2 HPC cluster.",
+    year: "2026",
+    tag: "IEEE Publication",
+    accent: "Published at IEEE UEMCON 2026, with Dr. Damian Valles",
+    Icon: FileText,
+    cover: "/photos/research/UEMCON_BG.jpeg",
+    link: "/photos/research/IEEE_UEMCON.pdf",
+    linkLabel: "View Paper (PDF) →",
+    intro:
+      "Co-authored with Dr. Damian Valles, this paper studies how deep learning training actually behaves over long, sustained runs rather than short controlled benchmarks. We trained ResNet-50, ViT-B/16, and BERT-base on Texas State's LEAP2 cluster across 100- and 250-epoch runs, logging throughput, GFLOPs/s, memory, and accuracy every epoch to surface hardware behavior that short benchmarks miss.",
+    bullets: [
+      "Identified model- and batch-dependent CPU slowdown consistent with thermal throttling — ResNet-50 lost 13–30% of its compute rate within a single run",
+      "Detected GPU throughput interference from node co-tenancy, with jobs lacking exclusive access dropping to roughly half throughput in 6 of 27 sweep runs",
+      "Measured ~0.4 GB of host memory growth over 250 epochs in transformer models, costing ViT-B/16 about 5% throughput over the run",
+      "Quantified GPU speedup across models, ranging from 7.9x to 28.3x over CPU training",
+    ],
+    skills: [
+      "Python",
+      "PyTorch",
+      "SLURM",
+      "HPC Benchmarking",
+      "GPU Profiling",
+      "Deep Learning",
+      "Data Analysis",
+    ],
+  },
+  {
     title: "HPC Internship",
     org: "Texas State Division of IT",
-    desc: "As the first undergraduate HPC intern in the Division of Information Technology, benchmarking the LEAP2 cluster as the university prepares for R1 classification.",
-    year: "Present",
+    desc: "As the first undergraduate HPC intern in the Division of Information Technology, benchmarked the LEAP2 cluster as the university prepared for R1 classification.",
+    year: "2025",
     tag: "HPC Research",
     accent: "First undergraduate HPC intern at Texas State University",
     Icon: Server,
     cover: "/photos/research/hpc-cover.jpeg",
     galleryCaptioned: [
-      { src: "/photos/research/hpc-illustration.jpg", caption: "An illustration of the LEAP2 cluster architecture" },
+      {
+        src: "/photos/research/hpc-illustration.jpg",
+        caption: "An illustration of the LEAP2 cluster architecture",
+      },
       { src: "/photos/research/hpc-real-cluster.jpg", caption: "The LEAP2 cluster" },
       { src: "/photos/research/hpc-us.jpeg", caption: "With the Division of IT team" },
       { src: "/photos/research/hpc-pre.jpg", caption: "Benchmarking results before optimization" },
       { src: "/photos/research/hpc-pro.jpg", caption: "Benchmarking results after optimization" },
-      { src: "/photos/research/hpc-certificates.jpeg", caption: "Certificates from HPC training and coursework" },
+      {
+        src: "/photos/research/hpc-certificates.jpeg",
+        caption: "Certificates from HPC training and coursework",
+      },
     ],
     intro:
       "As the first undergraduate intern in Texas State's Division of IT, I was embedded in the VP of IT cabinet during the university's push toward R1 research classification. The work grew well beyond the original benchmarking mandate.",
@@ -57,8 +101,17 @@ const items: Item[] = [
       "Initiated and led discussions with senior engineers on GPU architecture and accelerator configuration for research workloads",
       "Documented departing staff's institutional knowledge to preserve system continuity",
       "Designed an IT internship program framework from scratch, built to scale to 30–40 student interns by 2027",
+      "Co-authored a peer-reviewed paper on the benchmarking results, published at IEEE UEMCON 2026",
     ],
-    skills: ["HPC", "SLURM", "Linux", "Bash", "Python", "GPU Benchmarking", "Systems Documentation"],
+    skills: [
+      "HPC",
+      "SLURM",
+      "Linux",
+      "Bash",
+      "Python",
+      "GPU Benchmarking",
+      "Systems Documentation",
+    ],
   },
   {
     title: "NSF Lehigh ROV",
@@ -70,14 +123,26 @@ const items: Item[] = [
     Icon: Cpu,
     cover: "/photos/research/lehigh-cover.jpeg",
     galleryCaptioned: [
-      { src: "/photos/research/lehigh-team.jpeg", caption: "With my team at the Lehigh Research Symposium" },
-      { src: "/photos/research/lehigh-me.jpeg", caption: "Presenting our project at the symposium" },
-      { src: "/photos/research/lehigh-presentation.jpeg", caption: "Walking through our AUV design" },
+      {
+        src: "/photos/research/lehigh-team.jpeg",
+        caption: "With my team at the Lehigh Research Symposium",
+      },
+      {
+        src: "/photos/research/lehigh-me.jpeg",
+        caption: "Presenting our project at the symposium",
+      },
+      {
+        src: "/photos/research/lehigh-presentation.jpeg",
+        caption: "Walking through our AUV design",
+      },
       { src: "/photos/research/lehigh-poster.jpeg", caption: "Our research poster" },
       { src: "/photos/research/lehigh-p2.jpeg", caption: "2nd place out of 103 projects" },
       { src: "/photos/research/lehigh-prototype.jpg", caption: "Our six-thruster AUV prototype" },
       { src: "/photos/research/lehigh-drone.jpg", caption: "With our BlueROV" },
-      { src: "/photos/research/lehigh-mehdi.jpg", caption: "With Mehdi, a graduate intern on our team" },
+      {
+        src: "/photos/research/lehigh-mehdi.jpg",
+        caption: "With Mehdi, a graduate intern on our team",
+      },
       { src: "/photos/research/lehigh-ayoola.jpg", caption: "With my partner Ayoola" },
     ],
     intro:
@@ -88,7 +153,15 @@ const items: Item[] = [
       "Debugged control system behavior using QGroundControl, resolving rotation instability in the thruster mapping",
       "Presented at the Lehigh Research Symposium alongside 103 competing projects, placing 2nd in the General Research category",
     ],
-    skills: ["Python", "C++", "NVIDIA Jetson Nano", "Pixhawk", "QGroundControl", "Embedded Systems", "Mechanical Assembly"],
+    skills: [
+      "Python",
+      "C++",
+      "NVIDIA Jetson Nano",
+      "Pixhawk",
+      "QGroundControl",
+      "Embedded Systems",
+      "Mechanical Assembly",
+    ],
   },
   {
     title: "NSF I-Corps Northeast",
@@ -101,8 +174,14 @@ const items: Item[] = [
     cover: "/photos/research/nsf-cover.jpg",
     galleryCaptioned: [
       { src: "/photos/research/nsf-poster.jpeg", caption: "Our research poster" },
-      { src: "/photos/research/nsf-pos.jpeg", caption: "Presenting at the NSF I-Corps Northeast showcase" },
-      { src: "/photos/research/nsf-certificate.jpeg", caption: "My I-Corps Northeast completion certificate" },
+      {
+        src: "/photos/research/nsf-pos.jpeg",
+        caption: "Presenting at the NSF I-Corps Northeast showcase",
+      },
+      {
+        src: "/photos/research/nsf-certificate.jpeg",
+        caption: "My I-Corps Northeast completion certificate",
+      },
     ],
     intro:
       "The NSF I-Corps Northeast program is built around one discipline: get out of the building and talk to the people who would actually use what you are trying to build. Our focus was underwater wireless communication technology for autonomous vehicles.",
@@ -113,7 +192,14 @@ const items: Item[] = [
       "Pinpointed reliability in turbid water conditions as the primary unsolved barrier to commercialization",
       "Developed and iterated pitch materials through Lehigh and Princeton program mentors",
     ],
-    skills: ["Customer Discovery", "Market Research", "Lean Startup", "Acoustic Communications", "Stakeholder Interviews", "Pitch Development"],
+    skills: [
+      "Customer Discovery",
+      "Market Research",
+      "Lean Startup",
+      "Acoustic Communications",
+      "Stakeholder Interviews",
+      "Pitch Development",
+    ],
   },
   {
     title: "IEEE Publication",
@@ -132,7 +218,14 @@ const items: Item[] = [
       "Processed and classified motion data to identify distinguishable gait patterns across different worker states",
       "Co-authored the full IEEE conference paper in collaboration with Dr. Heping Chen's Automation and Robotics Lab",
     ],
-    skills: ["Python", "IMU Sensors", "Signal Processing", "Data Analysis", "Machine Learning", "LaTeX"],
+    skills: [
+      "Python",
+      "IMU Sensors",
+      "Signal Processing",
+      "Data Analysis",
+      "Machine Learning",
+      "LaTeX",
+    ],
   },
 ];
 
@@ -193,7 +286,10 @@ function Lightbox({
       {/* Image + side arrows */}
       <div className="flex flex-1 min-h-0 items-center justify-center gap-3 px-3 pb-4">
         <button
-          onClick={(e) => { e.stopPropagation(); onPrev(); }}
+          onClick={(e) => {
+            e.stopPropagation();
+            onPrev();
+          }}
           className="shrink-0 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white/60 transition hover:bg-white/20 hover:text-white disabled:opacity-0"
           disabled={photos.length <= 1}
         >
@@ -215,7 +311,10 @@ function Lightbox({
         </div>
 
         <button
-          onClick={(e) => { e.stopPropagation(); onNext(); }}
+          onClick={(e) => {
+            e.stopPropagation();
+            onNext();
+          }}
           className="shrink-0 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white/60 transition hover:bg-white/20 hover:text-white disabled:opacity-0"
           disabled={photos.length <= 1}
         >
@@ -226,7 +325,15 @@ function Lightbox({
   );
 }
 
-function ResearchModal({ item, open, onClose }: { item: Item; open: boolean; onClose: () => void }) {
+function ResearchModal({
+  item,
+  open,
+  onClose,
+}: {
+  item: Item;
+  open: boolean;
+  onClose: () => void;
+}) {
   const Icon = item.Icon;
   const hasPhotos = item.gallery && item.gallery.length > 0;
   const photos = item.gallery ?? [];
@@ -234,16 +341,25 @@ function ResearchModal({ item, open, onClose }: { item: Item; open: boolean; onC
 
   const openLightbox = (idx: number) => setLightboxIdx(idx);
   const closeLightbox = () => setLightboxIdx(null);
-  const prevPhoto = () => setLightboxIdx((i) => (i !== null ? (i - 1 + photos.length) % photos.length : null));
+  const prevPhoto = () =>
+    setLightboxIdx((i) => (i !== null ? (i - 1 + photos.length) % photos.length : null));
   const nextPhoto = () => setLightboxIdx((i) => (i !== null ? (i + 1) % photos.length : null));
 
   return (
     <>
-      <Dialog open={open} onOpenChange={(v) => { if (!v) onClose(); }}>
+      <Dialog
+        open={open}
+        onOpenChange={(v) => {
+          if (!v) onClose();
+        }}
+      >
         <DialogContent
           className="max-w-4xl w-full p-0 overflow-hidden border-border/60 bg-card gap-0 flex flex-col max-h-[90vh] sm:max-h-[86vh]"
           onEscapeKeyDown={(e) => {
-            if (lightboxIdx !== null) { e.preventDefault(); closeLightbox(); }
+            if (lightboxIdx !== null) {
+              e.preventDefault();
+              closeLightbox();
+            }
           }}
         >
           {/* ── Full-width cover ── */}
@@ -260,16 +376,21 @@ function ResearchModal({ item, open, onClose }: { item: Item; open: boolean; onC
           )}
 
           {/* ── Body: text left, photos right ── */}
-          <div className={`flex-1 min-h-0 overflow-y-auto sm:overflow-hidden flex flex-col${hasPhotos ? " sm:flex-row" : ""}`}>
-
+          <div
+            className={`flex-1 min-h-0 overflow-y-auto sm:overflow-hidden flex flex-col${hasPhotos ? " sm:flex-row" : ""}`}
+          >
             {/* Text content */}
-            <div className={`${hasPhotos ? "sm:flex-1" : "flex-1"} sm:overflow-y-auto px-6 sm:px-8 py-6 space-y-5`}>
+            <div
+              className={`${hasPhotos ? "sm:flex-1" : "flex-1"} sm:overflow-y-auto px-6 sm:px-8 py-6 space-y-5`}
+            >
               <DialogHeader className="space-y-2">
                 <div className="flex items-start justify-between gap-4 pr-6">
                   <DialogTitle className="text-xl sm:text-2xl font-bold tracking-tight leading-tight">
                     {item.title}
                   </DialogTitle>
-                  <span className="shrink-0 text-xs tabular-nums text-muted-foreground pt-1">{item.year}</span>
+                  <span className="shrink-0 text-xs tabular-nums text-muted-foreground pt-1">
+                    {item.year}
+                  </span>
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="inline-flex items-center rounded-full bg-teal/15 px-3 py-1 text-[11px] font-medium text-teal">
@@ -285,7 +406,7 @@ function ResearchModal({ item, open, onClose }: { item: Item; open: boolean; onC
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 text-sm text-teal hover:underline underline-offset-2"
                   >
-                    View on IEEE Xplore →
+                    {item.linkLabel ?? "View on IEEE Xplore →"}
                   </a>
                 )}
               </DialogHeader>
@@ -293,15 +414,22 @@ function ResearchModal({ item, open, onClose }: { item: Item; open: boolean; onC
               <div className="h-px bg-border/50" />
 
               {item.intro && (
-                <p className="text-sm sm:text-[15px] text-foreground/80 leading-relaxed">{item.intro}</p>
+                <p className="text-sm sm:text-[15px] text-foreground/80 leading-relaxed">
+                  {item.intro}
+                </p>
               )}
 
               {item.bullets && item.bullets.length > 0 && (
                 <div className="space-y-2">
-                  <p className="text-[10px] tracking-widest uppercase text-muted-foreground">What I did</p>
+                  <p className="text-[10px] tracking-widest uppercase text-muted-foreground">
+                    What I did
+                  </p>
                   <ul className="space-y-2.5">
                     {item.bullets.map((b, i) => (
-                      <li key={i} className="flex items-start gap-2.5 text-sm text-foreground/75 leading-relaxed">
+                      <li
+                        key={i}
+                        className="flex items-start gap-2.5 text-sm text-foreground/75 leading-relaxed"
+                      >
                         <span className="mt-1.75 h-1.5 w-1.5 rounded-full bg-teal shrink-0" />
                         {b}
                       </li>
@@ -312,7 +440,9 @@ function ResearchModal({ item, open, onClose }: { item: Item; open: boolean; onC
 
               {item.skills && item.skills.length > 0 && (
                 <div className="space-y-2 pb-1">
-                  <p className="text-[10px] tracking-widest uppercase text-muted-foreground">Skills & Tools</p>
+                  <p className="text-[10px] tracking-widest uppercase text-muted-foreground">
+                    Skills & Tools
+                  </p>
                   <div className="flex flex-wrap gap-1.5">
                     {item.skills.map((s) => (
                       <span
@@ -332,7 +462,9 @@ function ResearchModal({ item, open, onClose }: { item: Item; open: boolean; onC
               <>
                 <div className="hidden sm:block w-px bg-border/40 shrink-0" />
                 <div className="sm:w-[38%] shrink-0 sm:overflow-y-auto p-4 space-y-2.5 border-t border-border/40 sm:border-t-0">
-                  <p className="text-[10px] tracking-widest uppercase text-muted-foreground">Photos</p>
+                  <p className="text-[10px] tracking-widest uppercase text-muted-foreground">
+                    Photos
+                  </p>
                   <div className="grid grid-cols-2 gap-2">
                     {photos.map((src, idx) => (
                       <button
@@ -361,16 +493,17 @@ function ResearchModal({ item, open, onClose }: { item: Item; open: boolean; onC
         </DialogContent>
       </Dialog>
 
-      {lightboxIdx !== null && createPortal(
-        <Lightbox
-          photos={photos.map((src) => ({ src }))}
-          index={lightboxIdx}
-          onClose={closeLightbox}
-          onPrev={prevPhoto}
-          onNext={nextPhoto}
-        />,
-        document.body
-      )}
+      {lightboxIdx !== null &&
+        createPortal(
+          <Lightbox
+            photos={photos.map((src) => ({ src }))}
+            index={lightboxIdx}
+            onClose={closeLightbox}
+            onPrev={prevPhoto}
+            onNext={nextPhoto}
+          />,
+          document.body,
+        )}
     </>
   );
 }
@@ -381,8 +514,12 @@ function ResearchStoryModal({ item, onClose }: { item: Item; onClose: () => void
 
   const openLightbox = (idx: number) => setLightboxIdx(idx);
   const closeLightbox = () => setLightboxIdx(null);
-  const prevPhoto = () => setLightboxIdx((i) => (i !== null ? (i - 1 + galleryPhotos.length) % galleryPhotos.length : null));
-  const nextPhoto = () => setLightboxIdx((i) => (i !== null ? (i + 1) % galleryPhotos.length : null));
+  const prevPhoto = () =>
+    setLightboxIdx((i) =>
+      i !== null ? (i - 1 + galleryPhotos.length) % galleryPhotos.length : null,
+    );
+  const nextPhoto = () =>
+    setLightboxIdx((i) => (i !== null ? (i + 1) % galleryPhotos.length : null));
 
   useEffect(() => {
     window.history.pushState({ modal: true }, "");
@@ -433,7 +570,9 @@ function ResearchStoryModal({ item, onClose }: { item: Item; onClose: () => void
               <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground leading-tight">
                 {item.title}
               </h2>
-              <p className="mt-2 text-sm sm:text-base text-foreground/70">{item.org} · {item.year}</p>
+              <p className="mt-2 text-sm sm:text-base text-foreground/70">
+                {item.org} · {item.year}
+              </p>
             </div>
           </div>
         </div>
@@ -444,15 +583,22 @@ function ResearchStoryModal({ item, onClose }: { item: Item; onClose: () => void
             <p className="text-sm font-medium text-teal leading-snug">{item.accent}</p>
 
             {item.intro && (
-              <p className="text-sm sm:text-base text-foreground/80 leading-relaxed">{item.intro}</p>
+              <p className="text-sm sm:text-base text-foreground/80 leading-relaxed">
+                {item.intro}
+              </p>
             )}
 
             {item.bullets && item.bullets.length > 0 && (
               <div className="space-y-2.5">
-                <p className="text-[11px] tracking-[0.25em] uppercase text-teal font-medium">What I Did</p>
+                <p className="text-[11px] tracking-[0.25em] uppercase text-teal font-medium">
+                  What I Did
+                </p>
                 <ul className="space-y-2.5">
                   {item.bullets.map((b, i) => (
-                    <li key={i} className="flex items-start gap-2.5 text-sm sm:text-[15px] text-foreground/75 leading-relaxed">
+                    <li
+                      key={i}
+                      className="flex items-start gap-2.5 text-sm sm:text-[15px] text-foreground/75 leading-relaxed"
+                    >
                       <span className="mt-1.75 h-1.5 w-1.5 rounded-full bg-teal shrink-0" />
                       {b}
                     </li>
@@ -463,7 +609,9 @@ function ResearchStoryModal({ item, onClose }: { item: Item; onClose: () => void
 
             {item.skills && item.skills.length > 0 && (
               <div className="space-y-2.5">
-                <p className="text-[11px] tracking-[0.25em] uppercase text-teal font-medium">Skills &amp; Tools</p>
+                <p className="text-[11px] tracking-[0.25em] uppercase text-teal font-medium">
+                  Skills &amp; Tools
+                </p>
                 <div className="flex flex-wrap gap-1.5">
                   {item.skills.map((s) => (
                     <span
@@ -482,8 +630,12 @@ function ResearchStoryModal({ item, onClose }: { item: Item; onClose: () => void
           {galleryPhotos.length > 0 && (
             <div className="space-y-6">
               <div className="space-y-1.5 max-w-3xl mx-auto">
-                <p className="text-[11px] tracking-[0.25em] uppercase text-teal font-medium">Gallery</p>
-                <h3 className="font-display text-xl sm:text-2xl font-bold tracking-tight">Moments Along the Way</h3>
+                <p className="text-[11px] tracking-[0.25em] uppercase text-teal font-medium">
+                  Gallery
+                </p>
+                <h3 className="font-display text-xl sm:text-2xl font-bold tracking-tight">
+                  Moments Along the Way
+                </h3>
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-5">
                 {galleryPhotos.map((photo, idx) => (
@@ -507,7 +659,9 @@ function ResearchStoryModal({ item, onClose }: { item: Item; onClose: () => void
                       </div>
                     </div>
                     {photo.caption && (
-                      <p className="text-xs sm:text-sm text-muted-foreground leading-snug">{photo.caption}</p>
+                      <p className="text-xs sm:text-sm text-muted-foreground leading-snug">
+                        {photo.caption}
+                      </p>
                     )}
                   </button>
                 ))}
@@ -517,16 +671,17 @@ function ResearchStoryModal({ item, onClose }: { item: Item; onClose: () => void
         </div>
       </div>
 
-      {lightboxIdx !== null && createPortal(
-        <Lightbox
-          photos={galleryPhotos}
-          index={lightboxIdx}
-          onClose={closeLightbox}
-          onPrev={prevPhoto}
-          onNext={nextPhoto}
-        />,
-        document.body
-      )}
+      {lightboxIdx !== null &&
+        createPortal(
+          <Lightbox
+            photos={galleryPhotos}
+            index={lightboxIdx}
+            onClose={closeLightbox}
+            onPrev={prevPhoto}
+            onNext={nextPhoto}
+          />,
+          document.body,
+        )}
     </>
   );
 }
@@ -538,7 +693,9 @@ function Card({ item, onClick }: { item: Item; onClick: () => void }) {
       role="button"
       tabIndex={0}
       onClick={onClick}
-      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") onClick(); }}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") onClick();
+      }}
       className="group relative overflow-hidden rounded-2xl bg-surface-elevated border border-border/60 cursor-pointer transition-all duration-300 hover:border-teal/60 hover:shadow-[0_8px_40px_-12px_color-mix(in_oklab,var(--teal)_35%,transparent)] hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal/50"
     >
       {item.cover ? (
@@ -569,7 +726,9 @@ function Card({ item, onClick }: { item: Item; onClick: () => void }) {
 
         <div className="flex items-start justify-between gap-3">
           <h3 className="text-xl font-bold tracking-tight leading-tight">{item.title}</h3>
-          <span className="shrink-0 pt-1 text-xs text-muted-foreground tabular-nums">{item.year}</span>
+          <span className="shrink-0 pt-1 text-xs text-muted-foreground tabular-nums">
+            {item.year}
+          </span>
         </div>
 
         <p className="text-sm text-foreground/65 leading-relaxed">{item.desc}</p>
@@ -609,27 +768,30 @@ export function Research() {
               onClick={() => setExpanded(!expanded)}
               className="inline-flex items-center gap-2 rounded-full border border-border bg-surface-elevated px-5 py-2.5 text-sm font-medium text-foreground/80 hover:border-teal/50 hover:text-teal transition"
             >
-              {expanded ? <><Minus size={14} /> Show Less</> : <><Plus size={14} /> View All Research</>}
+              {expanded ? (
+                <>
+                  <Minus size={14} /> Show Less
+                </>
+              ) : (
+                <>
+                  <Plus size={14} /> View All Research
+                </>
+              )}
             </button>
           </div>
         )}
-
       </div>
 
-      {activeItem && (
-        activeItem.galleryCaptioned && activeItem.galleryCaptioned.length > 0 ? (
-          <ResearchStoryModal
-            item={activeItem}
-            onClose={() => setActiveItem(null)}
-          />
+      {activeItem &&
+        (activeItem.galleryCaptioned && activeItem.galleryCaptioned.length > 0 ? (
+          <ResearchStoryModal item={activeItem} onClose={() => setActiveItem(null)} />
         ) : (
           <ResearchModal
             item={activeItem}
             open={!!activeItem}
             onClose={() => setActiveItem(null)}
           />
-        )
-      )}
+        ))}
     </section>
   );
 }

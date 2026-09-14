@@ -57,6 +57,29 @@ export function About() {
               </p>
               <div className="space-y-1.5">
                 <p className="text-[18px] font-semibold text-foreground leading-snug">
+                  Undergraduate Researcher — Computing Research Lab (CRL)
+                </p>
+                <p className="text-[18px] text-muted-foreground">
+                  Texas State University · with Dr. Apan Qasem
+                </p>
+                <p className="text-[18px] text-foreground/75 leading-relaxed">
+                  Reproducing and extending research on using large language models to predict GPU
+                  performance bottlenecks, including dataset reconstruction, parallel code analysis,
+                  and hardware profiling for compute- versus memory-bound classification.
+                </p>
+              </div>
+            </div>
+
+            <div className="h-px bg-border/40" />
+
+            {/* Previous */}
+            <div className="space-y-5">
+              <p className="text-xs font-semibold uppercase tracking-widest text-foreground/60">
+                Previously
+              </p>
+
+              <div className="space-y-1.5">
+                <p className="text-[18px] font-semibold text-foreground leading-snug">
                   Undergraduate HPC Intern
                 </p>
                 <p className="text-[18px] text-muted-foreground">
@@ -71,19 +94,11 @@ export function About() {
                   </a>
                 </p>
                 <p className="text-[18px] text-foreground/75 leading-relaxed">
-                  Benchmarking the LEAP2 cluster and establishing performance baselines as Texas
-                  State prepares for R1 research classification.
+                  Benchmarked the LEAP2 cluster and established performance baselines as Texas State
+                  prepared for R1 research classification.{" "}
+                  <span className="text-teal font-medium">Published at IEEE UEMCON 2026.</span>
                 </p>
               </div>
-            </div>
-
-            <div className="h-px bg-border/40" />
-
-            {/* Previous */}
-            <div className="space-y-5">
-              <p className="text-xs font-semibold uppercase tracking-widest text-foreground/60">
-                Previously
-              </p>
 
               <div className="space-y-1.5">
                 <p className="text-[18px] font-semibold text-foreground leading-snug">
