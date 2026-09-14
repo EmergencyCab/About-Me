@@ -43,8 +43,8 @@ export function About() {
           <div className="flex flex-col gap-8">
             {/* Intro */}
             <p className="text-[18px] text-foreground/85 leading-relaxed">
-              I am a rising senior at Texas State University studying Computer Science with a minor
-              in Applied Mathematics. My work sits at the intersection of high performance computing
+              I am a senior at Texas State University studying Computer Science with a minor in
+              Applied Mathematics. My work sits at the intersection of high performance computing
               infrastructure and research accessibility.
             </p>
 
@@ -109,21 +109,6 @@ export function About() {
                   Built an autonomous underwater vehicle — 6-thruster AUV on NVIDIA Jetson Nano.{" "}
                   <span className="text-teal font-medium">Ranked 2nd of 103 projects</span> at the
                   Lehigh Summer Research Symposium.
-                </p>
-              </div>
-
-              <div className="space-y-1.5">
-                <p className="text-[18px] font-semibold text-foreground leading-snug">
-                  Automation & Robotics Lab
-                </p>
-                <p className="text-[18px] text-muted-foreground">
-                  Texas State University · Dr. Heping Chen
-                </p>
-                <p className="text-[18px] text-foreground/75 leading-relaxed">
-                  IMU-based gait analysis for construction safety.{" "}
-                  <span className="text-teal font-medium">
-                    Published at IEEE CYBER 2024, Copenhagen.
-                  </span>
                 </p>
               </div>
             </div>
